@@ -31,9 +31,17 @@ func NewGroup(name string, prospector *Prospector, params *Params) *Group {
 
 func (group *Group) RefreshStreams() {
 	params := &cloudwatchlogs.DescribeLogStreamsInput{
-		LogGroupName: aws.String(group.Name),
-		Descending:   aws.Bool(true),
-		OrderBy:      aws.String("LastEventTime"),
+		LogGroupName:        aws.String(group.Name),
+		Descending:          aws.Bool(true),
+		OrderBy:             aws.String("LastEventTime"),
+	}
+
+	if len(group.Prospector.StreamNamePrefix) != 0 {
+		params = &cloudwatchlogs.DescribeLogStreamsInput{
+			LogGroupName:        aws.String(group.Name),
+			LogStreamNamePrefix: aws.String(group.Prospector.StreamNamePrefix),
+			Descending:          aws.Bool(true),
+		}
 	}
 
 	err := group.Params.AWSClient.DescribeLogStreamsPages(

@@ -14,9 +14,10 @@ type Multiline struct {
 }
 
 type Prospector struct {
-	Id         string     `config:"id"`
-	GroupNames []string   `config:"groupnames"`
-	Multiline  *Multiline `config:"multiline"`
+	Id               string     `config:"id"`
+	GroupNames       []string   `config:"groupnames"`
+	StreamNamePrefix string     `config:"streamnameprefix"`
+	Multiline        *Multiline `config:"multiline"`
 }
 
 type Config struct {

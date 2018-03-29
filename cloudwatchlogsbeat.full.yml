@@ -48,6 +48,8 @@ cloudwatchlogsbeat:
       groupnames:
         - /aws/lambda/log-group-name
         - /aws/lambda/another-name-*
+      # streamnameprefix settings [OPTIONAL]
+      # streamnameprefix: prefix
       # multiline settings [OPTIONAL]
       # Check: https://www.elastic.co/guide/en/beats/filebeat/current/configuration-filebeat-options.html#multiline
       multiline:
